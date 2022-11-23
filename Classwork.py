@@ -120,6 +120,71 @@ def f (id):
         
 print(f(22))
 
+lst= [1,5,7,12,-3,1,65,-8,8,3,6,45,1,75,18,6,64,27, -2, -3,-45,-14,-6,-7,6,6,4,4,2,1,1]
+def max(lst):
+    current_max_number = lst[0]
+    for i in range(1,len(lst)):
+        if i > current_max_number:
+            current_max_number = i
+    return i 
+print(i)
+
+def max(lst):
+    current_min_number = lst[0]
+    for j in range(1,len(lst)):
+        if j < current_min_number:
+            current_min_number = i
+    return i 
+print(i)
+above = []
+def largerThan(lst, threshold):
+    threshold = 0#value of the threshold
+    for k in range(1, len(lst)):
+        if k > threshold:
+            above.append(k)
+    return above
+print(largerThan)
+below = []
+def smallerThan(lst, threshold):
+    threshold = 0#value of the threshold
+    for l in range(1, len(lst)):
+        if l < threshold:
+            below.append(l)
+    return below
+print(below)
+def countOccerance(lst, n):
+    count = 0
+    for element in lst:
+        if (element == n):
+            count = count + 1
+    return count
+print("count occurence", countOccerance(lst,4))
+
+def findDuplicate(lst):
+    more_than_one =[]
+    for i in lst:
+        if (countOccerance(lst,i) > 1) and ((i in more_than_one) == False):
+            more_than_one.append(i)
+            
+    return more_than_one
+print(findDuplicate(lst))
+factors = []
+def print_factors(x):
+   print("The factors of",x,"are:")
+   for i in range(1, x + 1):
+       if x % i == 0:
+           print(i)
+
+num = 320
+
+print_factors(num)
+
+def largerThan(lst,T_Hold):
+    pass
+def smallerThan(lst,T_Hold):
+    pass
+def countOccurance(lst, n):
+    pass
 
 # a.append
 # a.pop
@@ -133,6 +198,18 @@ print(f(22))
 # all cells are filled with 1-9 at the end, check for zero. 
 # solving the problem: 
 
-
+def factorial(n):
+    factoria = 1
+    for i in range(1, n+1):
+        factoria = factoria*i
+    return "the factorial of " + str(n) + " is " + str(factoria)
+print(factorial(5))
   
-    
+# def Fn():
+#     F(n) = F(n-1) + 2*F(n-2) - F(n-3)
+# i was not able to figure out this one, would we be able to discuss about this code a little bit in class?
+
+def factorial(n):
+    if n == 0:
+        return 1
+    return factorial(n-1) * n
