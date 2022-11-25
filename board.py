@@ -9,7 +9,9 @@
 # how to solve sudoku
 # create the board for sudoku
 SudokuRange = range(9)
-class board:
+
+
+class Board:
     def __init__(self):
         self.making_board()
 
@@ -43,32 +45,40 @@ class board:
                         and (c + column_offset) != column):
                     return False
         return True
-    # from left to right and top to bottom, find the first occurence of zero and return the coordinates of zero 
+    # from left to right and top to bottom, find the first occurence of zero and return the coordinates of zero
+
     def getNextEmptySpace(self):
         for r in SudokuRange:
             for c in SudokuRange:
-                if self.board[r][c] == 0: 
-                    return r,c
+                if self.board[r][c] == 0:
+                    return r, c
+
     def isFilled(self):
         for r in SudokuRange:
             for c in SudokuRange:
                 if self.board[r][c] == 0:
                     return False
         return True
-    # assume every cell is filled in with non zero. Check if every cells obey the rule of sudoku. 
+    # assume every cell is filled in with non zero. Check if every cells obey the rule of sudoku.
+
     def solved_correct(self):
         for r in SudokuRange:
-            for c in SudokuRange: 
-                if self.value_restriction(r,c,self.board[r][c]) == False:
+            for c in SudokuRange:
+                if self.board[r][c] != 0 and (not self.value_restriction(r, c, self.board[r][c])):
                     return False
         return True
+
     def returnboard(self):
         return self.board
-    def solution(self): 
+
+    def solution(self):
+        if (not self.solved_correct()):
+            return False
+
         def rec():
             while self.isFilled() == False:
                 Row, Column = self.getNextEmptySpace()
-                for i in range(1,10):
+                for i in range(1, 10):
                     if self.value_restriction(Row, Column, i) == True:
                         self.make_move(Row, Column, i)
                         success = rec()
@@ -79,12 +89,10 @@ class board:
                 return False
             return True
         rec()
-        if self.solved_correct() == True:
-            return True
-        else:
-            return False
+        return self.solved_correct()
 
-                        
+    def loadMatrix(self, mat):
+        self.board = mat
 
     # check row, column, and the box for the restrictions
     # 0 = blank, 1-9 = some input
@@ -101,18 +109,21 @@ class board:
     #    self.b[a1][a2] = v1
 
 
-board_1 = board()
-board_1.making_board()
-# board_1.set_value(0,0,5)
-board_1.make_move(1, 0, 6)
-board_1.make_move(2, 0, 1)
-board_1.make_move(0, 1, 3)
-board_1.make_move(1, 1, 7)
-board_1.make_move(2, 1, 9)
-board_1.make_move(0, 2, 4)
-board_1.make_move(1, 2, 2)
-board_1.make_move(2, 2, 7)
-board_1.solution()
-print(board_1)
-print(board_1.value_restriction(0, 0, 7))
-print(board_1)
+# trial = [
+#     [1, 2, 3, 4, 5, 6, 7, 8, 9],
+#     [0, 0, 0, 0, 0, 0, 0, 0, 0],
+#     [0, 0, 0, 0, 0, 0, 0, 0, 0],
+#     [0, 0, 0, 0, 0, 0, 0, 0, 0],
+#     [0, 0, 0, 0, 0, 0, 0, 0, 0],
+#     [0, 0, 0, 0, 0, 0, 0, 0, 0],
+#     [0, 0, 0, 0, 0, 0, 0, 0, 0],
+#     [0, 0, 0, 0, 0, 0, 0, 0, 0],
+#     [0, 0, 0, 0, 0, 0, 0, 0, 0],
+# ]
+
+# board_1 = Board()
+# print(board_1)
+# board_1.loadMatrix(trial)
+# print(board_1)
+# board_1.solution()
+# print(board_1)

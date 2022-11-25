@@ -5,8 +5,8 @@
     display: table-row;
 }
 .square {
-    background: lightgray;
-    border: 1px solid black;
+    background: lightblue;
+    border: 2px solid white;
     float: left;
     font-size: 24px;
     font-weight: bold;
@@ -17,10 +17,24 @@
     padding: 0;
     text-align: center;
     width: 34px;
-    font-family: "Trebuchet MS"
+    font-family: "Trebuchet MS";
+}
+.square:hover {
+    filter:brightness(1.2);
 }
 .table {
     clear:both;
     content: "";
     display: table;
+}
+.paper {
+    padding: 30px;
+    margin: 10px; 
+}
+.container {
+    display:flex;
+    justify-content: center;
+    position: absolute;
+    left:50px;
+    top:50px;
 }
